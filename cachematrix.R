@@ -1,4 +1,4 @@
-##create a function which starts with a null matrix argument
+## create a function that accepts a matrix as argument and returns a list of functions on the matrix
 makeCacheMatrix <- function(x = matrix()) {
     matinv <- NULL
   	## delcare another function "set" which sets the value of the matrix to that passed
@@ -7,11 +7,11 @@ makeCacheMatrix <- function(x = matrix()) {
     x <<- y
     matinv <<- NULL
   }
-  	## Fetch the value of the matrix
+  	## Fetch the original matrix
   	get <- function() x
   	## Set the inverse of the matrix; Note the absence of brackets for single-line function
     setinverse <- function(solve) matinv <<- solve 
-    ## Fetch the value of the inverse matrix     
+    ## Fetch the inverse of the matrix     
     getinverse <- function() matinv      
     
     ## Return: a list containing functions to:
@@ -23,7 +23,7 @@ makeCacheMatrix <- function(x = matrix()) {
     list(set = set, get = get, setinverse = setinverse, getinverse = getinverse)
 }
 
-# used to get the cache of the matrix
+# Function to return the inverse of the matrix, either from cache or calculated afresh
 cacheSolve<- function(x, ...) {                 
   matinv <- x$getinverse()
   
